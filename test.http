@@ -1,0 +1,29 @@
+### 创建比赛 - POST /matches
+POST http://localhost:8000/matches
+Content-Type: application/json
+
+{
+  "sport": "football",
+  "homeTeam": "Manchester United",
+  "awayTeam": "Liverpool",
+  "startTime": "2026-03-21T20:00:00.000Z",
+  "endTime": "2026-03-21T22:00:00.000Z",
+  "homeScore": 0,
+  "awayScore": 0
+}
+
+### 创建篮球比赛
+POST http://localhost:8000/matches
+Content-Type: application/json
+
+{
+  "sport": "basketball",
+  "homeTeam": "Lakers",
+  "awayTeam": "Warriors",
+  "startTime": "2026-03-22T19:30:00.000Z",
+  "endTime": "2026-03-22T21:30:00.000Z"
+}
+
+### 
+
+GET http://localhost:8000/matches

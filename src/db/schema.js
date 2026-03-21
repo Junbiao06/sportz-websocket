@@ -22,8 +22,8 @@ export const matches = pgTable("matches", {
   status: matchStatusEnum("status").notNull(),
   startTime: timestamp("start_time"),
   endTime: timestamp("end_time"),
-  homeScore: integer("home_score").notNull().default(0),
-  awayScore: integer("away_score").notNull().default(0),
+  homeScore: integer("home_score").default(0),
+  awayScore: integer("away_score").default(0),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
