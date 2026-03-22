@@ -7,7 +7,8 @@ const sendJson = (socket, payload) => {
 
 const broadcast = (wss, payload) => {
   for (const client of wss.clients) {
-    sendJson(client, payload);
+    if (client.readyState !== WebSocket.OPEN) continue;
+    client.send(JSON.stringify(payload));
   }
 };
 
@@ -24,6 +25,19 @@ export const attachWebSocketServer = (server) => {
     });
 
     socket.on("error", console.error);
+  });
+
+  const interval = setInterval(() => {
+    wss.clients.forEach((ws) => {
+      if (ws.isAlive === false) return ws.terminate();
+
+      ws.isAlive = false;
+      ws.ping();
+    });
+  }, 30000);
+
+  wss.on("close", () => {
+    clearInterval(interval);
   });
 
   const broadcastMatchCreated = (match) => {
